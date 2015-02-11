@@ -1,7 +1,11 @@
+*.py[cod]
+.token
+
 *.swp
 *~
 
-RAMP/
-ramp-theme-canada/
-ramp-theme-intranet/
-ramp-theme-usability/
+[iI]nclude/
+[lL]ib/
+lib64
+Scripts/
+bin/
