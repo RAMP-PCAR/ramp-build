@@ -2,6 +2,20 @@ GIT_SSH='c:\Program Files (x86)\PuTTY\plink.exe'
 RAMPDIR='c:\users\alym\vc\rampsync'
 THEMES='canada intranet usability'
 VER=$1
+OLDPWD=`pwd`
+
+cd $RAMPDIR/ramp
+git co develop
+git pull
+if [ "$VER" == 'auto' ]; then
+    VER=`python $OLDPWD/incver.py package.json`
+    echo "Auto versioning with $VER"
+fi
+if [ -z $VER ]; then
+    echo 'Must supply a version number to use for tagging'
+    exit 1
+fi
+
 TAG=v$VER
 
 tag_sync()
@@ -16,9 +30,6 @@ tag_sync()
     git push github $1
 }
 
-cd $RAMPDIR/ramp
-git co develop
-git pull
 sed -i "s/\"version\".*/\"version\":\ \"$VER\",/" yuidoc.json
 tag_sync $TAG
 
