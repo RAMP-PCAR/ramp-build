@@ -5,6 +5,9 @@ BRANCH='develop'
 VER=$1
 OLDPWD=`pwd`
 
+# undo a build
+# for t in $THEMES; do cd ../ramp-$t; git push github :v5.2.0-rc1; git push origin :v5.2.0-rc1; done
+
 cd $RAMPDIR/ramp
 git fetch
 git co $BRANCH
