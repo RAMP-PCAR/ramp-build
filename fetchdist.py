@@ -52,6 +52,8 @@ if __name__ == '__main__':
     for theme in paths:
         url = 'https://api.github.com/repos/RAMP-PCAR/{repo}/contents/tarball?ref={ref}'.format( **paths[theme] )
         fetch_theme( paths[theme]['filename'], paths[theme]['path'], auth )
+
+    print 'Copying to dev'
     shutil.copytree( tag, 'x:\\wwwroot\\RAMP_QC\\{0}'.format(tag) )
 
 #   if a.status_code == 200:
