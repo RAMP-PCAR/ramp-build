@@ -4,6 +4,11 @@ THEME=$1
 PATCH=$2
 STARTDIR=`pwd`
 
+#Usage:
+#ramp-theme-patch [theme-name] [patch command]
+#
+#theme-name is the name of the theme where the changes are
+#patch command is indicating changes to propagate; can be something like "-1 <sha>" for a single commit patch or "master" for changes from the current against master
 makepatch()
 {
 	git format-patch $PATCH --stdout > $RAMPDIR/p_auto.patch
