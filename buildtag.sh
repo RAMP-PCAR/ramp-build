@@ -1,12 +1,16 @@
 GIT_SSH='c:\Program Files (x86)\PuTTY\plink.exe'
 RAMPDIR='c:\users\alym\vc\rampsync'
 THEMES='canada intranet usability'
-BRANCH='develop'
+BRANCH=$2
 VER=$1
 OLDPWD=`pwd`
 
 # undo a build
 # for t in $THEMES; do cd ../ramp-$t; git push github :v5.2.0-rc1; git push origin :v5.2.0-rc1; done
+
+if [ -z $BRANCH ]; then
+    BRANCH='develop'
+fi
 
 cd $RAMPDIR/ramp
 git fetch
