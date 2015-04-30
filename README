@@ -1,0 +1,20 @@
+Random scripts for helping with RAMP build / deployment automation.
+
+Most scripts reference a rampsync directory.  This is how to set it
+up (can't make this into a shell script because you'll be prompted for
+credentials on the initial setup.
+
+cd somewhere
+mkdir rampsync
+git cl http://tfs.int.ec.gc.ca:8080/tfs/DC/_git/RAMP
+git cl http://tfs.int.ec.gc.ca:8080/tfs/DC/_git/ramp-theme-canada
+git cl http://tfs.int.ec.gc.ca:8080/tfs/DC/_git/ramp-theme-intranet
+git cl http://tfs.int.ec.gc.ca:8080/tfs/DC/_git/ramp-theme-usability
+cd RAMP
+git remote add github git@github.com:RAMP-PCAR/RAMP-PCAR.git
+cd ../ramp-theme-canada
+git remote add github git@github.com:RAMP-PCAR/ramp-theme-canada.git
+cd ../ramp-theme-intranet
+git remote add github git@github.com:RAMP-PCAR/ramp-theme-intranet.git
+cd ../ramp-theme-usability
+git remote add github git@github.com:RAMP-PCAR/ramp-theme-usability.git
