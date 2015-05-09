@@ -1,5 +1,5 @@
-RAMPDIR='c:\users\alym\vc\rampsync'
-THEMES='canada intranet usability'
+RAMPDIR='d:\vc\rampsync'
+THEMES='canada intranet usability fgp-int'
 SRC=$1
 DST=$2
 STARTDIR=`pwd`
@@ -12,7 +12,9 @@ mergedst()
     git pull
     git merge $SRC
     git push origin
-    git push github
+    if [ `git remote | grep github` ]; then
+        git push github
+    fi
 }
 
 cd $RAMPDIR/ramp
