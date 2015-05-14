@@ -1,6 +1,5 @@
-GIT_SSH='c:\Program Files (x86)\PuTTY\plink.exe'
-RAMPDIR='c:\users\alym\vc\rampsync'
-THEMES='canada intranet usability'
+RAMPDIR='d:\vc\rampsync'
+THEMES='canada intranet usability fgp-int'
 BRANCH=$2
 VER=$1
 OLDPWD=`pwd`
@@ -35,8 +34,10 @@ tag_sync()
     git tag $1
     git push origin $BRANCH
     git push origin $1
-    git push github $BRANCH
-    git push github $1
+    if [ `git remote | grep github` ]; then
+        git push github $BRANCH
+        git push github $1
+    fi
 }
 
 sed -i "s/\"version\".*/\"version\":\ \"$VER\",/" yuidoc.json

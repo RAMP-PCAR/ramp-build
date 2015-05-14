@@ -10,6 +10,7 @@ git cl http://tfs.int.ec.gc.ca:8080/tfs/DC/_git/RAMP
 git cl http://tfs.int.ec.gc.ca:8080/tfs/DC/_git/ramp-theme-canada
 git cl http://tfs.int.ec.gc.ca:8080/tfs/DC/_git/ramp-theme-intranet
 git cl http://tfs.int.ec.gc.ca:8080/tfs/DC/_git/ramp-theme-usability
+git cl git@github.com:ramp-pcar/ramp-theme-fgp-int
 cd RAMP
 git remote add github git@github.com:RAMP-PCAR/RAMP-PCAR.git
 cd ../ramp-theme-canada
