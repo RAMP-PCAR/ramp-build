@@ -13,9 +13,15 @@ git cl http://tfs.int.ec.gc.ca:8080/tfs/DC/_git/ramp-theme-usability
 git cl git@github.com:ramp-pcar/ramp-theme-fgp-int
 cd RAMP
 git remote add github git@github.com:RAMP-PCAR/RAMP-PCAR.git
+git co develop
 cd ../ramp-theme-canada
 git remote add github git@github.com:RAMP-PCAR/ramp-theme-canada.git
+git co develop
 cd ../ramp-theme-intranet
 git remote add github git@github.com:RAMP-PCAR/ramp-theme-intranet.git
+git co develop
 cd ../ramp-theme-usability
 git remote add github git@github.com:RAMP-PCAR/ramp-theme-usability.git
+git co develop
+cd ../ramp-theme-fgp-int
+git co develop

@@ -1,4 +1,6 @@
-RAMPDIR='d:\vc\rampsync'
+if [ -z $RAMPDIR ]; then
+    RAMPDIR='/d/vc/rampsync'
+fi
 THEMES='canada intranet usability fgp-int'
 SRC=$1
 DST=$2
