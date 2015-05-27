@@ -2,10 +2,11 @@ import requests, shutil, zipfile, os, sys
 from StringIO import StringIO
 
 paths = {
-            'core': { 'repo':'ramp-pcar-dist', 'ref':None },
-            'canada': { 'repo':'ramp-theme-dist', 'ref':'ramp-theme-canada' },
-            'intranet': { 'repo':'ramp-theme-dist', 'ref':'ramp-theme-intranet' },
-            'usability': { 'repo':'ramp-theme-dist', 'ref':'ramp-theme-usability' },
+            'core': { 'repo':'ramp-pcar-dist', 'ref':'ramp-pcar' },
+            'canada': { 'repo':'ramp-pcar-dist', 'ref':'ramp-theme-canada' },
+            'intranet': { 'repo':'ramp-pcar-dist', 'ref':'ramp-theme-intranet' },
+            'usability': { 'repo':'ramp-pcar-dist', 'ref':'ramp-theme-usability' },
+            'fgp-int': { 'repo':'ramp-pcar-dist', 'ref':'ramp-theme-fgp-int' },
         }
 
 def fetch_theme( fname, extract_path, auth ):
@@ -34,6 +35,7 @@ if __name__ == '__main__':
         print 'Usage {0} [version]'.format(sys.argv[0])
         sys.exit(1)
     ver = sys.argv[1]
+    branch = 'v' + ver.rsplit('.', 1)[0]
     tok = None
     with open('.token') as f:
         tok = f.read().strip()
@@ -43,14 +45,16 @@ if __name__ == '__main__':
     os.mkdir( tag )
     for theme in paths:
         paths[theme]['path'] = os.path.join( tag, theme )
-        if not paths[theme]['ref']:
-            paths[theme]['ref'] = tag
+        paths[theme]['ver'] = ver
+        paths[theme]['tag'] = tag
+        paths[theme]['branch'] = branch
+        if theme == 'core':
             paths[theme]['filename'] = 'ramp-pcar-dist-{0}.zip'.format(ver)
         else:
             paths[theme]['filename'] = 'ramp-theme-{0}-dist-{1}.zip'.format(theme,ver)
         os.mkdir( paths[theme]['path'] )
     for theme in paths:
-        url = 'https://api.github.com/repos/RAMP-PCAR/{repo}/contents/tarball?ref={ref}'.format( **paths[theme] )
+        url = 'https://api.github.com/repos/RAMP-PCAR/{repo}/contents/{tag}/{ref}?ref={branch}'.format( **paths[theme] )
         fetch_theme( paths[theme]['filename'], paths[theme]['path'], auth )
 
     print 'Copying to dev'
