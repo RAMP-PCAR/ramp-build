@@ -1,12 +1,12 @@
 RAMPDIR='C:\Users\Aleksueir\Code\TFS2013'
 THEMES='canada intranet usability fgp-int'
 THEME=$1
-PATCH=$2
-BRANCH=$3
+BRANCH=$2
+PATCH=$3
 STARTDIR=`pwd`
 
 #Usage:
-#ramp-theme-patch [theme-name] [patch command] [branch name]
+#ramp-theme-patch [theme-name] [branch name] [patch command]
 #
 #theme-name is the name of the theme where the changes are
 #patch command is indicating changes to propagate; can be something like "-1 <sha>" for a single commit patch or "master" for changes from the current against master
@@ -17,6 +17,7 @@ makepatch()
 
 patchtheme()
 {
+    git am --abort
     git am --signoff $RAMPDIR/p_auto.patch
 }
 
@@ -24,6 +25,7 @@ rm -f $RAMPDIR/p_auto.patch
 
 cd $RAMPDIR/ramp-theme-$THEME
 git co $BRANCH
+git pull
 makepatch
 
 for t in $THEMES; do
@@ -31,7 +33,8 @@ for t in $THEMES; do
 	
 	if [ "$t" != "$THEME" ]; then
         git co $BRANCH
-		patchtheme
+		git pull
+        patchtheme
 	fi		
 done
 
